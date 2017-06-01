@@ -1,0 +1,4 @@
+参考：http://blog.csdn.net/xyz_lmn/article/details/48055919
+
+不能直接嵌套ListView
+在5.0系统中新加入的nestedscrollview配合coordinatorlayout响应滚动事件，但在listview中没有相应的nested滚动接口，所以对coordinatorlayout中的一系列插件没有任何响应。

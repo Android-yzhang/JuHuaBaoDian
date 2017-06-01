@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/APTtestViewFinder/APTtestViewFinder.iml" filepath="$PROJECT_DIR$/APTtestViewFinder/APTtestViewFinder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/APTtestViewFinder-annotation/APTtestViewFinder-annotation.iml" filepath="$PROJECT_DIR$/APTtestViewFinder-annotation/APTtestViewFinder-annotation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/APTtestViewFinderCompiler/APTtestViewFinderCompiler.iml" filepath="$PROJECT_DIR$/APTtestViewFinderCompiler/APTtestViewFinderCompiler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Cache/Cache.iml" filepath="$PROJECT_DIR$/Cache/Cache.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CalendarListView/CalendarListView.iml" filepath="$PROJECT_DIR$/CalendarListView/CalendarListView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CircleRangeView/CircleRangeView.iml" filepath="$PROJECT_DIR$/CircleRangeView/CircleRangeView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CollapseCalendarView/CollapseCalendarView.iml" filepath="$PROJECT_DIR$/CollapseCalendarView/CollapseCalendarView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JewelTD/JewelTD.iml" filepath="$PROJECT_DIR$/JewelTD/JewelTD.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JuHuaBaoDian.iml" filepath="$PROJECT_DIR$/JuHuaBaoDian.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OkHttpUtils/OkHttpUtils.iml" filepath="$PROJECT_DIR$/OkHttpUtils/OkHttpUtils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SQL/SQL.iml" filepath="$PROJECT_DIR$/SQL/SQL.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SlideView/SlideView.iml" filepath="$PROJECT_DIR$/SlideView/SlideView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SweetAlertDialog/SweetAlertDialog.iml" filepath="$PROJECT_DIR$/SweetAlertDialog/SweetAlertDialog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Toasty/Toasty.iml" filepath="$PROJECT_DIR$/Toasty/Toasty.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UnderLineLinearLayout/UnderLineLinearLayout.iml" filepath="$PROJECT_DIR$/UnderLineLinearLayout/UnderLineLinearLayout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VoiceShortMessage/VoiceShortMessage.iml" filepath="$PROJECT_DIR$/VoiceShortMessage/VoiceShortMessage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/utils/utils.iml" filepath="$PROJECT_DIR$/utils/utils.iml" />
+    </modules>
+  </component>
+</project>

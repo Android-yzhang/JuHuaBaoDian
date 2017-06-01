@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SlideView">
+        <attr name="flip_interval" format="integer"/>
+        <attr name="dot_blur" format="reference"/>
+        <attr name="dot_focus" format="reference"/>
+        <attr name="dot_margin" format="dimension"/>
+        <attr name="left_in" format="reference"/>
+        <attr name="left_out" format="reference"/>
+        <attr name="right_in" format="reference"/>
+        <attr name="right_out" format="reference"/>
+    </declare-styleable>
+</resources>

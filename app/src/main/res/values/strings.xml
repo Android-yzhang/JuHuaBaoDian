@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">JuHuaBaoDian</string>
+
+
+    <string name="calendar_item_new_count">%d条</string>
+
+    <!--Toasty-->
+    <string name="normal_toast_with_icon">NORMAL TOAST (WITH ICON)</string>
+    <string name="normal_toast_without_icon">NORMAL TOAST (WITHOUT ICON)</string>
+    <string name="warning_toast">WARNING TOAST</string>
+    <string name="info_toast">INFO TOAST</string>
+    <string name="info_toast_with_formatting">INFO TOAST WITH FORMATTING</string>
+    <string name="error_toast">ERROR TOAST</string>
+    <string name="success_toast">SUCCESS TOAST</string>
+
+    <!--BottomNavigationView MenuItem-->
+    <string name="test_menu_item1">item1</string>
+    <string name="test_menu_item2">item2</string>
+    <string name="test_menu_item3">item3</string>
+    <string name="test_menu_item4">item4</string>
+    <string name="test_menu_item5">item5</string>
+</resources>

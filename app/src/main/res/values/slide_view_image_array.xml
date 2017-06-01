@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="slide_view_iamge_array">
+        <item>@mipmap/duoyun</item>
+        <item>@mipmap/duoyun</item>
+        <item>@mipmap/duoyun</item>
+        <item>@mipmap/duoyun</item>
+    </string-array>
+</resources>

@@ -1,0 +1,5 @@
+http://blog.csdn.net/duanyy1990/article/details/52139294
+
+
+Retrofit与okhttp共同出自于Square公司，retrofit就是对okhttp做了一层封装。
+把网络请求都交给给了Okhttp，我们只需要通过简单的配置就能使用retrofit来进行网络请求了。

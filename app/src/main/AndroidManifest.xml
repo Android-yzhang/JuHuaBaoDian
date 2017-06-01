@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yzhang.juhuabaodian">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!--6.0以上系统需要动态申请的权限-->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Demos-->
+        <activity
+            android:name=".Demos.DemosMainActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".Demos.DemoBaseActivity" />
+
+        <!--OSBaseModule-->
+        <activity android:name=".Demos.OSBaseModule.ContextAndOthers.ContextAndOthersMainActivity" />
+
+        <service android:name=".Demos.OSBaseModule.ContextAndOthers.LocalService" />
+        <service
+            android:name=".Demos.OSBaseModule.ContextAndOthers.RemoteService"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="com.yzhang.juhuabaodian.Demos.OSBaseModule.ContextAndOthers.RemoteService" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name=".Demos.OSBaseModule.ContextAndOthers.StaticBroadCastReceiver">
+            <intent-filter>
+                <action android:name="static_broadcast_receiver_test_action" />
+            </intent-filter>
+        </receiver>
+        <provider
+            android:authorities="com.yzhang.providers.test"
+            android:name=".Demos.OSBaseModule.ContextAndOthers.MyContentProvider" />
+
+        <activity android:name=".Demos.OSBaseModule.PermissionForMarshmallow.PermissionDemoActivity" />
+
+        <activity android:name=".Demos.OSBaseModule.ClassLoader.ClassLoaderDemoActivity"/>
+        <activity android:name=".Demos.OSBaseModule.ReflectAndProxy.ProxyDemoActivity"/>
+        <activity android:name=".Demos.OSBaseModule.ReflectAndProxy.ReflectDemoActivity"/>
+
+        <!--WidgetModule-->
+        <activity android:name=".Demos.WidgetModule.ViewAndViewGroup.ViewAndViewGroupMainActivity" />
+
+        <activity android:name=".Demos.WidgetModule.RecyclerView.RecyclerViewDemoMainActivity"/>
+        <activity android:name=".Demos.WidgetModule.RecyclerView.GridLayout"/>
+        <activity android:name=".Demos.WidgetModule.RecyclerView.StaggeredGrid"/>
+
+        <activity android:name=".Demos.WidgetModule.BottomNavigationView.BottomNavigationViewDemoActivity"/>
+        <activity android:name=".Demos.WidgetModule.CoordinatorLayout.CoordinatorLayoutDemoActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <!--CustomWidgetModule-->
+        <activity android:name=".Demos.CustomWidgetModule.SweetAlertDialog.SweetAlertDialogDemoActivity" />
+        <activity android:name=".Demos.CustomWidgetModule.CalendarListView.CalendarActivity" />
+        <activity android:name=".Demos.CustomWidgetModule.CollapseCalendarView.CollapseCalendarViewDemoActivity" />
+        <activity android:name=".Demos.CustomWidgetModule.CircleRangeView.CircleRangeViewDemoActivity" />
+        <activity android:name=".Demos.CustomWidgetModule.UnderLineLinearLayout.HorizontalDemoActivity" />
+        <activity android:name=".Demos.CustomWidgetModule.UnderLineLinearLayout.UnderLineLinearLayoutDemoActivity" />
+        <activity android:name=".Demos.CustomWidgetModule.Toasty.ToastyDemoActivity"/>
+        <activity android:name=".Demos.CustomWidgetModule.MPAndroidChart.testChartActivity"/>
+        <activity android:name=".Demos.CustomWidgetModule.SlideView.SlideViewDemoActivity"/>
+        <activity android:name=".Demos.CustomWidgetModule.ViewDragHelper.ViewDragHelperDemoActivity"/>
+
+        <!--OtherModule-->
+        <activity android:name=".Demos.OtherModule.Annotation.AnnotationDemoActivity"/>
+        <activity android:name=".Demos.OtherModule.APT.APTDemoActivity"/>
+        <activity android:name=".Demos.OtherModule.RxJava.RxJavaDemoActivity" />
+        <activity android:name=".Demos.OtherModule.Retrofit.RetrofitDemoActivity" />
+
+    </application>
+
+</manifest>

@@ -1,0 +1,3 @@
+//jar cvf E:\JuHuaBaoDian\ClassLoaderTest\libs\classloadertest.jar E:\JuHuaBaoDian\ClassLoaderTest\src\main\java\com\yzhang\ClassLoaderTest
+//E:\android\sdk\build-tools\25.0.2\dx.bat --dex --output=E:\JuHuaBaoDian\ClassLoaderTest\libs\classes.jar E:\JuHuaBaoDian\ClassLoaderTest\libs\classloadertest.jar
+E:\android\sdk\build-tools\25.0.2\dx.bat --dex --output=E:\JuHuaBaoDian\ClassLoaderTest\libs\classes.jar E:\JuHuaBaoDian\ClassLoaderTest\build\intermediates\bundles\debug

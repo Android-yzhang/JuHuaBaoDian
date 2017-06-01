@@ -1,0 +1,117 @@
+1. Context
+    1.1 概念
+    描述的是一个应用程序环境的信息，即上下文。
+    路径： /frameworks/base/core/java/android/content/Context.java
+    Context是一个抽象类，具体的实现在ContextImpl.java类  路径 ：/frameworks/base/core/java/android/app/ContextImpl.java
+    ContextWrapper类，对Context类的一种包装，该类的构造函数包含了一个真正的Context引用，即ContextIml对象。
+    ContextThemeWrapper类，内部包含了主题(Theme)相关的接口，即android:theme属性指定的。
+    1.2 重要子类
+    Context的两个直接子类是ContextImpl和ContextWrapper类，ContextThemeWrapper类继承ContextWrapper类，只有Activity需要主题，所以Activity继承ContextThemeWrapper类，Application和Service不需要主题，所以直接继承于ContextWrapper类。
+    一个应用包含的Context的实例（ContextImpl）个数为，Service个数 + Activity个数 + 1（Application对应的Context实例）。
+    1.3 常用方法
+    startActivity(Intent activity);启动一个Activity
+    startService(Intent service);启动一个Service
+    stopService(Intent service);停止一个服务
+    bindService(Intent service, ServiceConnection conn,int flags);绑定一个服务
+    unbindService(ServiceConnection conn);解绑一个服务
+    sendBroadcast(Intent intent);发送广播
+    Intent registerReceiver(BroadcastReceiver receiver, IntentFilter filter)；注册广播
+    unregisterReceiver(BroadcastReceiver receiver);注销广播
+    getSystemService(String name);获取系统服务
+    getResources();获取资源文件
+    getSharedPreferences(String name, int mode);获得SharedPreferences
+2. Activity
+    2.1 生命周期
+    基本生命周期 onCreate->onStrat->(onReStart->)onResume->onPause->onStop->onDestroy
+    两个Activity切换时的生命周期 onPause(one)->onCreate(two)->onStart(two)->onResume(two)->onStop(one)
+    横竖屏切换时的生命周期：（有待实验）
+        1、不设置Activity的android:configChanges时，切屏会重新调用各个生命周期，切横屏时会执行一次，切竖屏时会执行两次
+        2、设置Activity的android:configChanges="orientation"时，切屏还是会重新调用各个生命周期，切横、竖屏时只会执行一次
+        3、设置Activity的android:configChanges="orientation|keyboardHidden"时，切屏不会重新调用各个生命周期，只会执行onConfigurationChanged方法
+    2.2 常用方法
+    startActivity();同Context的startActivity()的实现不完全相同
+3. Service
+    3.1 概念
+    一个Service 是一段长生命周期的，没有用户界面的程序，可以用来开发如监控类程序。
+    3.2 生命周期
+        1.以调用Context.startService()启动，而以调用Context.stopService()结束
+        2.以调用Context.bindService()方法建立，以调用Context.unbindService()关闭
+    3.3 重要的生命周期方法
+        void onCreate() -> 当用户调用startService （）或bindService（）时，Service第一次被实例化的时候系统会调用,整个生命周期只调用1次这个方法，通常用于初始化设置。注意：多次调用startService（）或bindService（）方法不会多次触发onCreate（）方法
+        void onDestroy() -> 当用户调用stopService()或unbindService（）来停止服务时被系统调用,（整个生命周期只调用1次）用来释放onCreate()方法中创建的资源
+        void onStart(Intent intent) -> 通过startService()方法启动的服务,初始化结束后系统会调用该方法，用于处理传递给startService()的Intent对象。如音乐服务会打开Intent 来探明将要播放哪首音乐，并开始播放。注意：多次调用startService（）方法会多次触发onStart（）方法
+        IBinder onBind(Intent intent) 类似onStart(Intent intent)方法
+        boolean onUnbind(Intent intent) 用户调用unbindService()时系统调用此方法，Intent 对象同样传递给该方法
+4. BroadCastReceiver
+    4.1 广播类型：
+    普通广播，通过Context.sendBroadcast(Intent myIntent)发送的
+    有序广播，通过Context.sendOrderedBroadcast(intent, receiverPermission)发送的，该方法第2个参数决定该广播的级别，级别数值是在 -1000 到 1000 之间 , 值越大 , 发送的优先级越高；广播接收者接收广播时的级别级别（可通过intentfilter中的priority进行设置设为2147483647时优先级最高），同级别接收的先后是随机的， 再到级别低的收到广播，高级别的或同级别先接收到广播的可以通过abortBroadcast()方法截断广播使其他的接收者无法收到该广播，还有其他构造函数
+    异步广播，通过Context.sendStickyBroadcast(Intent myIntent)发送的，还有sendStickyOrderedBroadcast(intent, resultReceiver, scheduler,  initialCode, initialData, initialExtras)方法，该方法具有有序广播的特性也有异步广播的特性；发送异步广播要： <uses-permission android:name="android.permission.BROADCAST_STICKY" />权限，接收并处理完Intent后，广播依然存在，直到你调用removeStickyBroadcast(intent)主动把它去掉
+    4.2 注册方式
+    注册该广播接收者,注册有两种方法程序动态注册和AndroidManifest文件中进行静态注册（可理解为系统中注册）如下：
+        静态注册,注册的广播，下面的priority表示接收广播的级别"2147483647"为最高优先级
+        <receiver android:name=".SMSBroadcastReceiver" >
+        　　<intent-filter android:priority = "2147483647" >
+        　　　　<action android:name="android.provider.Telephony.SMS_RECEIVED" />
+        　　</intent-filter>
+        </receiver >
+        动态注册，一般在Activity可交互时onResume()内注册BroadcastReceiver
+        IntentFilter intentFilter=new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
+        registerReceiver(mBatteryInfoReceiver ,intentFilter);
+        在onPause()内反注册BroadcastReceiver
+        //反注册
+        unregisterReceiver(receiver);
+5. ContextProvider
+    5.1 概念
+    android平台提供了Content Provider使一个应用程序的指定数据集提供给其他应用程序。这些数据可以存储在文件系统中、在一个SQLite数据库、或以任何其他合理的方式。
+    其他应用可以通过ContentResolver类(见ContentProviderAccessApp例子)从该内容提供者中获取或存入数据。
+    只有需要在多个应用程序间共享数据是才需要内容提供者。例如，通讯录数据被多个应用程序使用，且必须存储在一个内容提供者中
+    它的好处:统一数据访问方式。
+    5.2 系统自带的内容提供者(顶级的表示数据库名,非顶级的都是表名)
+    ├────Browser
+    ├────CallLog
+    ├────Contacts
+    │                ├────Groups
+    │                ├────People
+    │                ├────Phones
+    │                └────Photos
+    ├────Images
+    │                └────Thumbnails
+    ├────MediaStore
+    │                ├────Albums
+    │                ├────Artists
+    │                ├────Audio
+    │                ├────Genres
+    │                └────Playlists
+    ├────Settings
+    └────Video
+6. Intent
+    6.1 简介
+    Intent的中文意思是“意图，意向”，在Android中提供了Intent机制来协助应用间的交互与通讯，Intent负责对应用中一次操作的动作、动作涉及数据、附加数据进行描述，Android则根据此Intent的描述，负责找到对应的组件，将 Intent传递给调用的组件，并完成组件的调用。Intent不仅可用于应用程序之间，也可用于应用程序内部的Activity/Service之间的交互。因此，可以将Intent理解为不同组件之间通信的“媒介”专门提供组件互相调用的相关信息。
+    6.2 属性
+    Intent有以下几个属性：动作(Action),数据(Data),分类(Category),类型(Type),组件(Compent)以及扩展信(Extra)。其中最常用的是Action属性和Data属性。
+        6.2.1 Action属性
+        Action是指Intent要完成的动作，是一个字符串常量。SDK中定义了一些标准的Action常量
+        6.2.2 Data属性
+        Intent的Data属性是执行动作的URI和MIME类型，不同的Action有不同的Data数据指定。比如：ACTION_EDIT Action应该和要编辑的文档URI Data匹配，ACTION_VIEW应用应该和要显示的URI匹配。
+        6.2.3 Category属性
+        Intent中的Category属性是一个执行动作Action的附加信息。比如：CATEGORY_HOME则表示放回到Home界面，ALTERNATIVE_CATEGORY表示当前的Intent是一系列的可选动作中的一个。
+        6.2.4 Type属性
+        Intent的Type属性显式指定Intent的数据类型（MIME）。一般Intent的数据类型能够根据数据本身进行判定，但是通过设置这个属性，可以强制采用显式指定的类型而不再进行推导。
+        6.2.5 Compent属性
+        Intent的Compent属性指定Intent的的目标组件的类名称。通常 Android会根据Intent 中包含的其它属性的信息，比如action、data/type、category进行查找，最终找到一个与之匹配的目标组件。但是，如果 component这个属性有指定的话，将直接使用它指定的组件，而不再执行上述查找过程。指定了这个属性以后，Intent的其它所有属性都是可选的。
+        6.2.6 Extra属性
+        Intent的Extra属性是添加一些组件的附加信息。比如，如果我们要通过一个Activity来发送一个Email，就可以通过Extra属性来添加subject和body。
+7. Application
+    7.1 重点方法
+    void  onConfigurationChanged(Configuration newConfig) //TODO
+    void  onCreate()  //初始化
+    void  onLowMemory() //低内存时执行
+    void  onTerminate() //这个函数是模拟一个过程环境，在真机中永远也不会被调用。
+
+8. 参考网页
+Context：http://blog.csdn.net/qinjuning/article/details/7310620
+四大基本组件：http://www.cnblogs.com/bravestarrhu/archive/2012/05/02/2479461.html
+Intent：http://liangruijun.blog.51cto.com/3061169/634411/
+AIDL:http://www.open-open.com/lib/view/open1469493649028.html
+     http://blog.csdn.net/luoyanglizi/article/details/51594016

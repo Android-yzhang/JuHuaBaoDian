@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/APTtestViewFinder" />
+            <option value="$PROJECT_DIR$/APTtestViewFinder-annotation" />
+            <option value="$PROJECT_DIR$/APTtestViewFinderCompiler" />
+            <option value="$PROJECT_DIR$/Cache" />
+            <option value="$PROJECT_DIR$/CalendarListView" />
+            <option value="$PROJECT_DIR$/CircleRangeView" />
+            <option value="$PROJECT_DIR$/CollapseCalendarView" />
+            <option value="$PROJECT_DIR$/JewelTD" />
+            <option value="$PROJECT_DIR$/OkHttpUtils" />
+            <option value="$PROJECT_DIR$/SQL" />
+            <option value="$PROJECT_DIR$/SlideView" />
+            <option value="$PROJECT_DIR$/SweetAlertDialog" />
+            <option value="$PROJECT_DIR$/Toasty" />
+            <option value="$PROJECT_DIR$/UnderLineLinearLayout" />
+            <option value="$PROJECT_DIR$/VoiceShortMessage" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/utils" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

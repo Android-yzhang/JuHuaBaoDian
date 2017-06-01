@@ -1,0 +1,29 @@
+一 View 的基本概念
+    1. 基本描述：
+        这个类是用户接口的基础构件。 View 表示屏幕上的一块矩形区域，负责绘制这个区域和事件处理。
+        View 是所有widget类的基类，Widget 类用于创建交互式UI构件（按钮，输入框等）。
+        View 类的ViewGroup子类是layout 的基类，Layout是一个不可见的容器，它保存着View（或ViewGroup）并定义这些View的layout 属性。
+        可以说View类是用户接口类中最重要的一个类。
+    2. 使用 view
+        2.1 View 的组织：
+            同一个窗口的所用view 都存储在一个树内，既可以通过代码动态增加删除view, 也可以通过在xml文件中定义一个view树来构造这个树。
+        2.2 . 主要操作：
+            2.2.1 设置属性：既通过view和其子类的方法设置view的属性， 也可以在xml文件中设置view的属性。
+            2.2.2 设置焦点：  通过requestFocus 方法可以强制view获得焦点。
+            2.2.3 设置 listener: 可以通过设置listener来监听 特定view的事件， 比如获得或失去焦点，点击事件等。
+            2.2.4 设置visibility: 可以隐藏或显示view, setVisibility.
+        2.3. 注意事项：
+            Android framework 负责measuring laying out 和drawing view.  除非要自己实现一个ViewGroup,
+            否则不应该显示调用实现这些功能的方法。
+二 实现定制view
+    为了实现一个定制view, 需要重写一些view的标准方法。
+    framework会调用这些方法， 并且认为这些方法应该是所有的view都有实现。
+    这些方法不必全部重写， 事实上，可以只重写onDraw 函数就可以了
+三 View的属性和动作：
+    1 属性：
+        1.1 IDs: Views 有一个整数相对应， id被用于在view 数中找到指定的view.
+        可以在layout 文件中定义 一个唯一的ID, 在Activity 的 onCreate函数中调用findViewById来查找这个view.
+        在整个树内， view可以不是唯一的，但再指定的范围内查找时我们可以确信它是唯一的
+    2.位置:
+        view是一个矩形区域, 使用左&上的坐标以及长和宽可以表示一个View. 我们可以使用方法getLeft() getTop() getRight() getBottom() getWidth() 等函数
+        来获取其位置信息.

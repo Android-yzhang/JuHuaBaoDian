@@ -1,0 +1,107 @@
+apply plugin: 'com.android.application'
+//apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "com.yzhang.juhuabaodian"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    sourceSets {
+        main {
+            res.srcDirs = [
+                    'src/main/res/layouts/Demos/Main',
+                    'src/main/res/layouts/Demos/OSBaseModule',
+                    'src/main/res/layouts/Demos/WidgetModule/RecyclerView',
+                    'src/main/res/layouts/Demos/WidgetModule/BottonNavigationView',
+                    'src/main/res/layouts/Demos/WidgetModule/CoordinatorLayout',
+                    'src/main/res/layouts/Demos/WidgetModule',
+                    'src/main/res/layouts/Demos/CustomWidgetModule/CalendarListView',
+                    'src/main/res/layouts/Demos/CustomWidgetModule/SweetAlertDialog',
+                    'src/main/res/layouts/Demos/CustomWidgetModule/CollapseCalendarView',
+                    'src/main/res/layouts/Demos/CustomWidgetModule/CircleRangeView',
+                    'src/main/res/layouts/Demos/CustomWidgetModule/UnderLineLinearLayout',
+                    'src/main/res/layouts/Demos/CustomWidgetModule/Toasty',
+                    'src/main/res/layouts/Demos/CustomWidgetModule/MPAndroidChart',
+                    'src/main/res/layouts/Demos/CustomWidgetModule/SlideView',
+//                    'src/main/res/layouts/Demos/CustomWidgetModule',
+//                    'src/main/res/layouts/Demos/CustomWidgetModule',
+                    'src/main/res/layouts/Demos/OtherModule/APT',
+                    'src/main/res/layouts/Main',
+                    'src/main/res/layouts',
+                    'src/main/res'
+            ]
+        }
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    compile "com.android.support:percent:$rootProject.supportLibraryVersion"
+    compile "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
+    compile "com.android.support:design:$rootProject.supportLibraryVersion"
+    compile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    testCompile 'junit:junit:4.12'
+    compile(name: 'MPChartLib-release', ext: 'aar')
+    compile project(path: ':utils')
+    compile project(path: ':JewelTD')
+    compile project(path: ':SweetAlertDialog')
+    compile project(path: ':CalendarListView')
+    compile project(path: ':CollapseCalendarView')
+    compile project(path: ':CircleRangeView')
+    compile project(path: ':UnderLineLinearLayout')
+    compile project(path: ':Toasty')
+    compile project(path: ':SlideView')
+    compile project(path: ':APTtestViewFinder')
+    compile project(path: ':APTtestViewFinder-annotation')
+    annotationProcessor project(':APTtestViewFinderCompiler')
+    compile 'com.squareup.okhttp:okhttp:2.7.5'
+    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'io.reactivex:rxjava:1.2.7'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    compile 'com.squareup.retrofit2:converter-scalars:2.2.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.2.0'
+//    apt 'com.google.dagger:dagger-compiler:2.10-rc4'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.10-rc4'
+    compile 'com.google.dagger:dagger:2.10-rc4'
+//    compile project(path: ':ClassLoaderTest')
+}
